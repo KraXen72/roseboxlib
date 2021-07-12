@@ -150,7 +150,7 @@ a, .link {
     left: 50%;
     transform: translate(-50%, -50%);
     border: 2px solid #a57562;
-    padding: 0rem 1rem 1rem 1rem;
+    padding: 0rem 1rem 0rem 1rem;
     border-radius: 0.5rem;
     min-width: 40rem;
     background: var(--bg-primary);
@@ -176,6 +176,14 @@ a, .link {
     padding: 0.5rem;
     border-bottom: 2px solid var(--bg-secondary)
 }
+.popup-footer {
+    position: sticky;
+    position: -webkit-sticky;
+    bottom: 0;
+    z-index: 3; 
+    background: var(--bg-primary);
+    padding: 0.5rem;
+}
 /*use like this:
     <div id="popupid-body" class="popup-body" hidden>
       <div id="popupid-header" class="popup-header">
@@ -183,6 +191,9 @@ a, .link {
         <button class="closepill popupclose" id="popupid-close">&times;</button>
       </div>
       content
+      <div class="popup-footer">
+        <button id="settings-submit" class="matter-button-outlined">Save</button>
+      </div>
     </div>
 */
 
