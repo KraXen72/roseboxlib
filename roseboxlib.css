@@ -80,6 +80,10 @@ body {
 .noselect {user-select: none !important;}
 .bold { font-weight: bold;}
 .accent-icon { color: var(--fg-rosebox); }
+.icon-135 { 
+    font-size: 1.35rem !important; 
+    height: 1.35rem !important;
+}
 
 
 .mdicontext { /*add to button which has both text and a material icon*/
