@@ -97,9 +97,10 @@ body {
 /*put element to flex-end*/
 .flex-end {justify-self: flex-end;}
 
-/*buttn colors, danger and active*/
+/*button colors: danger, active and force default colors*/
 .btn-active {color: rgb(103, 165, 139);}
 .btn-danger {color: rgb(226, 76, 76);}
+.btn-force-default {color: var(--text) !important}
 
 .btn-activef {color: rgb(103, 165, 139) !important;}
 .btn-dangerf {color: rgb(226, 76, 76) !important}
