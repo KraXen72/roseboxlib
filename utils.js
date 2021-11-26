@@ -1,46 +1,7 @@
+// @ts-nocheck
 const fs = require('fs');
 const slash = process.platform === 'win32' ? "\\" : "/"
-
-/**
- * shorten a string to <start of string>...<end of string> format
- * @param {String} str String to shorten
- * @param {Number} len length of characters to shorten to
- */
-function shortenFilename(str, len) { //turn a long string to start of string...end of string
-    if (str.length > len) {
-        let halfsize = Math.floor(len/2)-1 //the final size for each half
-        let firsthalf = str.slice(0, (str.length/2)+1)
-        let secondhalf = str.slice((str.length/2), str.length)
-
-        //trim first half
-        if (firsthalf.length > halfsize) { firsthalf = firsthalf.slice(0, halfsize)}
-        //trim second half
-        if (secondhalf.length > halfsize) {secondhalf = secondhalf.slice(secondhalf.length-halfsize, secondhalf.length+1)}
-
-        return firsthalf+"..."+secondhalf
-    } else {return str}
-}
-
-/**
- * initialize / Load config file. rememer to modify this to init the way you want
- * @param {String} filename config.json recommended but filename of the config file.
- */
-function initOrLoadConfig(filename) { //initialize config.json
-    let config = {}
-
-    if (fs.existsSync(filename)) {
-        config = JSON.parse(fs.readFileSync(filename))
-    } else {
-        config = {
-            "maindir": "",
-            "exts": ["mp3"], 
-            "ignore": [],
-            "comPlaylists": {}
-        }
-        fs.writeFileSync(filename, JSON.stringify(config, null, 2))
-    }
-    return config
-}
+const { shortenFilename, fixQuotes, getExtOrFn, zeropad } = require("./esm/lib")
 
 /**
  * save the config file
@@ -50,14 +11,6 @@ function initOrLoadConfig(filename) { //initialize config.json
 function saveConfig(filename, config) { //save config.json
     fs.writeFileSync(filename, JSON.stringify(config, null, 2))
     console.log("saved config")
-}
-
-/**
- * fix quotes so they can be put in title html attribute. replaces " with &quot;
- * @param {String} str the string you want to fix quotes in
- */
-function fixQuotes(str) { //escape quotes when put in title attribute for example
-    return str.replaceAll('"', "&quot;")
 }
 
 /**
@@ -72,21 +25,24 @@ function clearFolder(path) { //delete all files in a folder
 }
 
 /**
- * get either the extention or filename from a "filename.ext" format
- * @param {String} filename a string in "filename.ext" format
- * @returns {Object} {filename, ext}
+ * initialize / Load config file. rememer to modify this to init the way you want
+ * @param {String} filename config.json recommended but filename of the config file.
  */
-function getExtOrFn(filename) { //get the extension or filename from "filename.ext" format
-    let splitarr = filename.split(".")
-    let ext = splitarr[splitarr.length - 1]
-    let fn = splitarr.slice(0, splitarr.length - 1).join(".")
-    return {fn, ext}
-}
+ function initOrLoadConfig(filename) { //initialize config.json
+    let config = {}
 
-function zeropad(number, finalWidth, customCharacter) {
-    customCharacter = customCharacter || '0';
-    number = number + '';
-    return number.length >= finalWidth ? number : new Array(finalWidth - number.length + 1).join(customCharacter) + number;
+    if (fs.existsSync(filename)) {
+        config = JSON.parse(fs.readFileSync(filename))
+    } else {
+        config = {
+            "maindir": "",
+            "exts": ["mp3"], 
+            "ignore": [],
+            "comPlaylists": {}
+        }
+        fs.writeFileSync(filename, JSON.stringify(config, null, 2))
+    }
+    return config
 }
 
 //generate a material design esque more menu / dropdown thingy
@@ -144,4 +100,5 @@ function summonMenu(options) {
     }, 0)
 }
 
-module.exports = {shortenFilename, initOrLoadConfig, saveConfig, fixQuotes, clearFolder, getExtOrFn, zeropad, summonMenu}
+module.exports = { initOrLoadConfig, saveConfig, clearFolder, summonMenu, 
+    shortenFilename, fixQuotes, getExtOrFn, zeropad }
