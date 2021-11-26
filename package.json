@@ -6,5 +6,9 @@
   "repository": "https://github.com/KraXen72/roseboxlib",
   "author": "KraXen72 <dpelech1@gmail.com>",
   "license": "GPLv3",
-  "private": false
+  "private": false,
+  "exports": {
+    "require": "./utils.js",
+    "import": "./esm/lib.js"
+  }
 }
