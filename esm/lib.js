@@ -30,7 +30,7 @@ export function fixQuotes(str) { //escape quotes when put in title attribute for
 /**
  * get either the extention or filename from a "filename.ext" format
  * @param {String} filename a string in "filename.ext" format
- * @returns {Object} {filename, ext}
+ * @returns {{fn: string, ext: string}} {filename, ext}
  */
 export function getExtOrFn(filename) { //get the extension or filename from "filename.ext" format
     let splitarr = filename.split(".")
