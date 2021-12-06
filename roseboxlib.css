@@ -66,7 +66,7 @@ body {
     background: rgb(103, 165, 139);
     height: 2px;
     z-index: 2;
-    transition: opacity 1s, width 0.5s;
+    transition: opacity 1s, width 1s;
 }
 .roundedprog {
     border-radius: 0 0 1rem 1rem;
