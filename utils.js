@@ -27,19 +27,23 @@ function clearFolder(path) { //delete all files in a folder
 /**
  * initialize / Load config file. rememer to modify this to init the way you want
  * @param {String} filename config.json recommended but filename of the config file.
+ * @param {Object=} schema the skeleton to use for config object if creating
+ * @returns {any} config file
  */
- function initOrLoadConfig(filename) { //initialize config.json
+ function initOrLoadConfig(filename, schema) { //initialize config.json
     let config = {}
-
-    if (fs.existsSync(filename)) {
-        config = JSON.parse(fs.readFileSync(filename))
-    } else {
-        config = {
+    if (schema === undefined) {
+        schema = {
             "maindir": "",
             "exts": ["mp3"], 
             "ignore": [],
             "comPlaylists": {}
         }
+    }
+    if (fs.existsSync(filename)) {
+        config = JSON.parse(fs.readFileSync(filename))
+    } else {
+        config = schema
         fs.writeFileSync(filename, JSON.stringify(config, null, 2))
     }
     return config
