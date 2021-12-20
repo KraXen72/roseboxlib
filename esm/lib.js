@@ -44,3 +44,26 @@ export function zeropad(number, finalWidth, customCharacter) {
     number = number + '';
     return number.length >= finalWidth ? number : new Array(finalWidth - number.length + 1).join(customCharacter) + number;
 }
+
+//destroy autocomplete
+export function autocompleteDestroy(instance) {
+    document.body.removeEventListener('click', instance.handleDocumentClick)
+    instance.input.removeEventListener('input', instance.core.handleInput)
+    instance.input.removeEventListener('keydown', instance.core.handleKeyDown)
+    instance.input.removeEventListener('focus', instance.core.handleFocus)
+    instance.input.removeEventListener('blur', instance.core.handleBlur)
+    instance.resultList.removeEventListener(
+        'mousedown',
+        instance.core.handleResultMouseDown
+    )
+    instance.resultList.removeEventListener('click', instance.core.handleResultClick)
+
+    instance.root = null
+    instance.input = null
+    instance.resultList = null
+    instance.getResultValue = null
+    instance.onUpdate = null
+    instance.renderResult = null
+    //autocompleteDestroy(instance.core)
+    instance.core = null
+}
