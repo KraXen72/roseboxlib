@@ -1,15 +1,24 @@
 // @ts-nocheck
 const fs = require('fs');
+const { json } = require('stream/consumers');
 const slash = process.platform === 'win32' ? "\\" : "/"
-const { shortenFilename, fixQuotes, getExtOrFn, zeropad } = require("./esm/lib")
+const { shortenFilename, fixQuotes, getExtOrFn, zeropad, autocompleteDestroy } = require("./esm/lib")
 
 /**
  * save the config file
  * @param {String} filename path to config file (can be relative)
- * @param {Object} config the object/json you want to write in config 
+ * @param {Object} config the object/json you want to write in config
+ * @param {Boolean=} minified wether to minify the json or nah
  */
-function saveConfig(filename, config) { //save config.json
-    fs.writeFileSync(filename, JSON.stringify(config, null, 2))
+function saveConfig(filename, config, minified) { //save config.json
+    if (minified === undefined){minified == false}
+    data = ''
+    if (minified === true) {
+        data = JSON.stringify(config)
+    } else {
+        data = JSON.stringify(config, null, 2)
+    }
+    fs.writeFileSync(filename, data)
     console.log("saved config")
 }
 
@@ -44,6 +53,7 @@ function clearFolder(path) { //delete all files in a folder
         config = JSON.parse(fs.readFileSync(filename))
     } else {
         config = schema
+        //make neccesary directories
         fs.writeFileSync(filename, JSON.stringify(config, null, 2))
     }
     return config
