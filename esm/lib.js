@@ -45,7 +45,11 @@ export function zeropad(number, finalWidth, customCharacter) {
     return number.length >= finalWidth ? number : new Array(finalWidth - number.length + 1).join(customCharacter) + number;
 }
 
-//destroy autocomplete
+/**
+ * given an instance of @trevoreyre/autocomplete-js it will destroy it. most importatnly, remove eventlisteners
+ * assumes access to document.body
+ * @param instance instance of Autocomplete from @trevoreyre/autocomplete-js
+ */
 export function autocompleteDestroy(instance) {
     document.body.removeEventListener('click', instance.handleDocumentClick)
     instance.input.removeEventListener('input', instance.core.handleInput)
