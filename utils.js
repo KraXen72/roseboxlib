@@ -1,8 +1,7 @@
 // @ts-nocheck
 const fs = require('fs');
-const { json } = require('stream/consumers');
 const slash = process.platform === 'win32' ? "\\" : "/"
-const { shortenFilename, fixQuotes, getExtOrFn, zeropad, autocompleteDestroy, summonMenu } = require("./esm/lib")
+const { shortenFilename, fixQuotes, getExtOrFn, zeropad, summonMenu } = require("./esm/lib")
 
 /**
  * save the config file
@@ -58,27 +57,6 @@ function clearFolder(path) { //delete all files in a folder
     }
     return config
 }
-
-//generate a material design esque more menu / dropdown thingy
-/*
-requires html setup defined in roseboxlib.css
-
-usage:
-elem.onclick = (event) => {
-    let opt = {event, buttons: [
-        {   text: "Details",
-            run: () => {
-                updatePreview(songobj, false, true, true)
-            }},
-        {   text: "Edit Tags", 
-            run: () => {
-                alert("placeholder for tag editor")
-            }}
-    ]}
-    summonMenu(opt)
-}
-
-*/
 
 module.exports = { initOrLoadConfig, saveConfig, clearFolder, summonMenu, 
     shortenFilename, fixQuotes, getExtOrFn, zeropad, summonMenu }

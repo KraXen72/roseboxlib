@@ -68,6 +68,15 @@ export function autocompleteDestroy(instance) {
     instance.core = null
 }
 
+/**
+ * generate a material design esque more menu / dropdown thingy
+ * 
+ * @see roseboxlib.css for required html markup
+ * @see lib.js for usage example if needed
+ * 
+ * @param {{buttons: {text: string, run: Function},event: Event | null}} options options for moremenu. buttons is array of {text: "text", run: ()=>{}}, event is used to get client X and Y
+ * @param {Event} passedEvent you can pass the event here if it's more convenient that in options 
+*/
 export function summonMenu(options, passedEvent) {
     if (passedEvent === undefined) { passedEvent = options.event } //fallback for how i used it before
     document.onclick = ""
@@ -103,3 +112,20 @@ export function summonMenu(options, passedEvent) {
         }
     }, 0)
 }
+
+/*
+USAGE EXAMPLE
+elem.onclick = (event) => {
+    let opt = {event, buttons: [
+        {   text: "Details",
+            run: () => {
+                updatePreview(songobj, false, true, true)
+            }},
+        {   text: "Edit Tags", 
+            run: () => {
+                alert("placeholder for tag editor")
+            }}
+    ]}
+    summonMenu(opt)
+}
+*/
