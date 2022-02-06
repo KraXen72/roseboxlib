@@ -20,6 +20,14 @@ export function shortenFilename(str, len) { //turn a long string to start of str
 }
 
 /**
+ * check if a given playlist is in config's complaylists
+ * [WIP] don't use yet
+ */
+export function checkPlaylistCom(config, fullpath) {
+    return Object.keys(config.comPlaylists).includes(fullpath)
+}
+
+/**
  * fix quotes so they can be put in title html attribute. replaces " with &quot;
  * @param {String} str the string you want to fix quotes in
  */

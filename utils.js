@@ -7,7 +7,7 @@ const { shortenFilename, fixQuotes, getExtOrFn, zeropad, summonMenu } = require(
  * save the config file
  * @param {String} filename path to config file (can be relative)
  * @param {Object} config the object/json you want to write in config
- * @param {Boolean=} minified wether to minify the json or nah
+ * @param {Boolean} minified wether to minify the json or nah
  */
 function saveConfig(filename, config, minified) { //save config.json
     if (minified === undefined){minified == false}
@@ -35,7 +35,7 @@ function clearFolder(path) { //delete all files in a folder
 /**
  * initialize / Load config file. rememer to modify this to init the way you want
  * @param {String} filename config.json recommended but filename of the config file.
- * @param {Object=} schema the skeleton to use for config object if creating
+ * @param {Object} schema the skeleton to use for config object if creating
  * @returns {any} config file
  */
  function initOrLoadConfig(filename, schema) { //initialize config.json
