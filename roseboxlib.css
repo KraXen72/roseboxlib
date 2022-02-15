@@ -84,6 +84,7 @@ body {
     font-size: 1.35rem !important; 
     height: 1.35rem !important;
 }
+.opacity50 { opacity: 50%; }
 
 
 .mdicontext { /*add to button which has both text and a material icon*/
