@@ -10,7 +10,7 @@ const { shortenFilename, fixQuotes, getExtOrFn, zeropad, summonMenu } = require(
  * @param {Boolean} minified wether to minify the json or nah
  */
 function saveConfig(filename, config, minified) { //save config.json
-    if (minified === undefined){minified == false}
+    if (minified === undefined){minified === false}
     data = ''
     if (minified === true) {
         data = JSON.stringify(config)
