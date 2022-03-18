@@ -1,7 +1,7 @@
 // @ts-nocheck
 const fs = require('fs');
 const slash = process.platform === 'win32' ? "\\" : "/"
-const { shortenFilename, fixQuotes, getExtOrFn, zeropad, summonMenu } = require("./esm/lib")
+const { shortenFilename, fixQuotes, getExtOrFn, zeropad, precisionRound, summonMenu } = require("./esm/lib")
 
 /**
  * save the config file
@@ -59,4 +59,4 @@ function clearFolder(path) { //delete all files in a folder
 }
 
 module.exports = { initOrLoadConfig, saveConfig, clearFolder, summonMenu, 
-    shortenFilename, fixQuotes, getExtOrFn, zeropad, summonMenu }
+    shortenFilename, fixQuotes, getExtOrFn, zeropad, precisionRound, summonMenu }
