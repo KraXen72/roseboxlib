@@ -1,7 +1,9 @@
 // @ts-nocheck
 const fs = require('fs');
 const slash = process.platform === 'win32' ? "\\" : "/"
-const { shortenFilename, fixQuotes, getExtOrFn, zeropad, precisionRound, summonMenu } = require("./esm/lib")
+const { shortenFilename, fixQuotes, getExtOrFn, zeropad, precisionRound, summonMenu, randomNumberBetween, sleep, memoize, first, last, sample, pluck, groupBy, autocompleteDestroy, addGlobalEventListener, qs, qsa, createElement } = require("./esm/lib")
+
+//file oriented utils
 
 /**
  * save the config file
@@ -11,7 +13,7 @@ const { shortenFilename, fixQuotes, getExtOrFn, zeropad, precisionRound, summonM
  */
 function saveConfig(filename, config, minified) { //save config.json
     if (minified === undefined){minified = false}
-    data = ''
+    let data = ''
     if (minified === true) {
         data = JSON.stringify(config)
     } else {
@@ -58,5 +60,5 @@ function clearFolder(path) { //delete all files in a folder
     return config
 }
 
-module.exports = { initOrLoadConfig, saveConfig, clearFolder, summonMenu, 
-    shortenFilename, fixQuotes, getExtOrFn, zeropad, precisionRound, summonMenu }
+module.exports = { initOrLoadConfig, saveConfig, clearFolder, 
+    shortenFilename, fixQuotes, getExtOrFn, zeropad, precisionRound, summonMenu, randomNumberBetween, sleep, memoize, first, last, sample, pluck, groupBy, autocompleteDestroy, addGlobalEventListener, qs, qsa, createElement }
