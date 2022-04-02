@@ -197,6 +197,11 @@ export function createElement(type, options = {}) {
             return
         }
 
+        if (key === "innerHTML") {
+            element.innerHTML = value
+            return
+        }
+
         element.setAttribute(key, value)
     })
     return element
