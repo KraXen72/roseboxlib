@@ -90,7 +90,7 @@ export function autocompleteDestroy(instance) {
  * @see roseboxlib.css for required html markup
  * @see lib.js for usage example if needed
  * 
- * @param {{buttons: {text: string, run: Function},event: Event | null}} options options for moremenu. buttons is array of {text: "text", run: ()=>{}}, event is used to get client X and Y
+ * @param {{menuItems: {text: string, run: Function},event: Event | null}} options options for moremenu. menuItems is array of {text: "text", run: ()=>{}}, event is used to get client X and Y
  * @param {Event} passedEvent you can pass the event here if it's more convenient that in options 
 */
 export function summonMenu(options, passedEvent) {
@@ -99,9 +99,9 @@ export function summonMenu(options, passedEvent) {
     let menu = document.getElementById("moremenu")
     menu.querySelector("ul").innerHTML = ""
 
-    if (options.buttons.length > 0) {
-        for (let i = 0; i < options.buttons.length; i++) {
-            const btn = options.buttons[i];
+    if (options.menuItems.length > 0) {
+        for (let i = 0; i < options.menuItems.length; i++) {
+            const btn = options.menuItems[i];
             let btne = document.createElement("li")
             btne.classList.add("mm-li")
             btne.textContent = btn.text
@@ -110,7 +110,7 @@ export function summonMenu(options, passedEvent) {
             menu.querySelector("ul").appendChild(btne)
         }
     } else {
-        menu.querySelector("ul").innerHTML = `<li class="mm-li">Invalid menu, no buttons defined</li>`
+        menu.querySelector("ul").innerHTML = `<li class="mm-li">Invalid menu, no menuItems defined</li>`
     }
    
     menu.classList.remove("hidden")
@@ -132,7 +132,7 @@ export function summonMenu(options, passedEvent) {
 /*
 USAGE EXAMPLE
 elem.onclick = (event) => {
-    let opt = {event, buttons: [
+    let opt = {event, menuItems: [
         {   text: "Details",
             run: () => {
                 updatePreview(songobj, false, true, true)
