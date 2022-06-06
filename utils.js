@@ -37,7 +37,7 @@ function clearFolder(path) { //delete all files in a folder
 /**
  * initialize / Load config file. rememer to modify this to init the way you want
  * @param {String} filename config.json recommended but filename of the config file.
- * @param {Object} schema the skeleton to use for config object if creating
+ * @param {Object=} schema the skeleton to use for config object if creating
  * @returns {any} config file
  */
  function initOrLoadConfig(filename, schema) { //initialize config.json
