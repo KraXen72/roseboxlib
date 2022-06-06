@@ -295,6 +295,6 @@ elem.onclick = (event) => {
                 alert("placeholder for tag editor")
             }}
     ]}
-    summonMenu(opt)
+    summonMenu(opt, event)
 }
 */
