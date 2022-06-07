@@ -10,8 +10,9 @@ const { shortenFilename, fixQuotes, getExtOrFn, zeropad, precisionRound, summonM
  * @param {String} filename path to config file (can be relative)
  * @param {Object} config the object/json you want to write in config
  * @param {Boolean} minified wether to minify the json or nah
+ * @param {String=} extraMessage optional extra message to log when saving config
  */
-function saveConfig(filename, config, minified) { //save config.json
+function saveConfig(filename, config, minified, extraMessage = "") { //save config.json
     if (minified === undefined){minified = false}
     let data = ''
     if (minified === true) {
