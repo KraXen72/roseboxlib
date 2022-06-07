@@ -21,7 +21,7 @@ function saveConfig(filename, config, minified, extraMessage = "") { //save conf
         data = JSON.stringify(config, null, 2)
     }
     fs.writeFileSync(filename, data)
-    console.log("saved config")
+    console.log(`saved config${extraMessage === "" ? "" : ` [${extraMessage}] `}`)
 }
 
 /**
